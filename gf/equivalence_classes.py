@@ -11,6 +11,9 @@ import sys
 from timeit import default_timer as timer
 import math
 import string
+from sympy import *
+init_printing(use_unicode=True)
+from string import ascii_lowercase
 
 """
 Tree lingo:
@@ -210,7 +213,21 @@ def give_psi(n, method='partitioning'):
 	return sum([n_h[i] * give_psi(representatives[i] --- having branches from here --- ) for i in range(representatives)])
 
 
-#
+def give_extant_samples(n):
+    return ascii_lowercase[0:n]
+
+def give_combos(alphabet):
+    l = len(alphabet)
+    for k in range(1, l+1):
+        give_combo(alphabet, '', l, k)
+
+def give_combo(alphabet, prefix, l, k, i_0=0):
+if k==0:
+combos.append(prefix)
+else:
+for i in range(i_0, l):
+new_prefix = prefix + alphabet[i]
+give_combo(alphabet, new_prefix, l, k-1, i+1)
 
 """
 def binary_splits():
